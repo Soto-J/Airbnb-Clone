@@ -1,5 +1,14 @@
 // npm in next-auth @prisma/client @next-auth/prisma-adapter
 // npm i bcrypt @types/bcrypt
+
+// Enable OAuth Apps on GitHub
+// github > settings > developer settings > OAuth Apps > New OAuth App
+
+/* Enable OAuth Apps on Google
+console.cloud.google.com > credentials > 
+create credentials > OAuth client ID > web application > 
+name > http://localhost:3000 > create > copy client ID and client secret
+*/
 import bycrypt from "bcrypt";
 import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
