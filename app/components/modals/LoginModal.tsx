@@ -12,11 +12,14 @@ import Input from "../inputs/Input";
 import toast from "react-hot-toast";
 import Button from "../Button";
 import { useRouter } from "next/navigation";
+import { log } from "console";
 // When Signup button is clicked, this component is rendered
 
 const LoginModal = () => {
   const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
+
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
 
@@ -54,6 +57,12 @@ const LoginModal = () => {
     });
   };
 
+  const toggleRegister = useCallback(() => {
+    reset();
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal, reset]);
+
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome back" subtitle="Login to your account!" />
@@ -84,7 +93,7 @@ const LoginModal = () => {
         outline
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => signIn("google")}
       />
       <Button
         outline
@@ -101,16 +110,16 @@ const LoginModal = () => {
         "
       >
         <div className="flex items-center justify-center gap-2">
-          <div>Already have an account?</div>
+          <div>First time using Airbnb?</div>
           <div
-            onClick={loginModal.onClose}
+            onClick={toggleRegister}
             className="
               cursor-pointer
               text-neutral-800
               hover:underline
             "
           >
-            Log in
+            Create an account
           </div>
         </div>
       </div>
