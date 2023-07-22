@@ -9,6 +9,7 @@ import { MdOutlineVilla } from "react-icons/md";
 import { FaSkiing } from "react-icons/fa";
 import { BsSnow } from "react-icons/bs";
 import {
+  GiBarn,
   GiBoatFishing,
   GiCactus,
   GiCastle,
@@ -80,9 +81,19 @@ export const categories = [
     description: "This proptery is in a cave!",
   },
   {
+    label: "Desert",
+    icon: GiCactus,
+    description: "This proptery is in the desert!",
+  },
+  {
+    label: "Barn",
+    icon: GiBarn,
+    description: "This proptery is in the desert!",
+  },
+  {
     label: "Luxury",
     icon: IoDiamond,
-    description: "This proptery is in the desert!",
+    description: "This proptery is luxurious!",
   },
 ];
 
