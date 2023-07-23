@@ -19,9 +19,39 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
   const router = useRouter();
   const params = useSearchParams();
 
+  const handleClick = useCallback(() => {
+    if (!params) {
+      const url = queryString.stringifyUrl({
+        url: "/",
+        query: { category: label },
+      });
+
+      router.push(url);
+      return;
+    }
+
+    // If params exist, parse them into an object
+    const currentQuery = queryString.parse(params.toString());
+    console.log("params", params.toString());
+    console.log("category", currentQuery);
+    const updatedQuery: any = {
+      ...currentQuery,
+      category: label,
+    };
+
+    if (params.get("category") === label) {
+      delete updatedQuery.category;
+    }
+
+    const url = queryString.stringifyUrl({
+      url: "/",
+      query: updatedQuery,
+    });
+
+    router.push(url);
+  }, [label, params, router]);
   // const handleClick = useCallback(() => {
   //   let currentQuery = {};
-  //   console.log(params?.toString());
   //   // If params exist, parse them into an object
   //   if (params) {
   //     currentQuery = queryString.parse(params.toString());
@@ -48,37 +78,6 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
 
   //   router.push(url);
   // }, [label, params, router]);
-
-  const handleClick = useCallback(() => {
-    let url: string = "";
-
-    if (!params) {
-      url = queryString.stringifyUrl({
-        url: "/",
-        query: { category: label },
-      });
-
-      router.push(url);
-      return;
-    }
-
-    const currentQuery = queryString.parse(params.toString());
-    const updatedQuery: any = {
-      ...currentQuery,
-      category: label,
-    };
-
-    if (params.get("category") === label) {
-      delete updatedQuery.category;
-    }
-
-    url = queryString.stringifyUrl({
-      url: "/",
-      query: updatedQuery,
-    });
-
-    router.push(url);
-  }, [label, params, router]);
 
   return (
     <div

@@ -90,7 +90,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         >
           <div className="flex cursor-pointer flex-col">
             {currentUser ? (
-              <>
+              <> {/* Displays when user is logged in */}
                 <MenuItem onClick={() => {}} label="My trips" />
 
                 <MenuItem onClick={() => {}} label="My favorite" />
@@ -104,9 +104,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem onClick={() => signOut()} label="Sign out" />
               </>
             ) : (
-              <>
+              <> {/* Displays when user isn't logged in */}
                 <MenuItem onClick={loginModal.onOpen} label="Login" />
-
                 <MenuItem onClick={registerModal.onOpen} label="Signup" />
               </>
             )}

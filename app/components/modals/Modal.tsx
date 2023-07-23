@@ -74,30 +74,31 @@ const Modal: React.FC<ModalProps> = ({
     <>
       <div
         className="
-          fixed
-          inset-0
-          z-50
-          flex
-          items-center
-          justify-center
-          overflow-x-auto
-          overflow-y-hidden
-          bg-neutral-800/70
+          fixed 
+          inset-0 
+          z-50 
+          flex 
+          items-center 
+          justify-center 
+          overflow-y-auto 
+          overflow-x-hidden 
+          bg-neutral-800/70 
           outline-none
           focus:outline-none
-        "
+          lg:overflow-y-hidden
+          "
       >
-        <div onClick={handleClose} className="absolute h-screen w-full"></div>
+        {/* <div onClick={handleClose} className="absolute h-screen w-full"></div> */}
         <div
           className="
             relative
-            mx-auto
+            mx-auto 
             my-6
             h-full
             w-full
-            md:h-auto
-            md:w-4/6
-            lg:h-auto
+            md:h-full
+            md:w-4/6 
+            lg:h-auto 
             lg:w-3/6
             xl:w-2/5
           "
@@ -105,36 +106,37 @@ const Modal: React.FC<ModalProps> = ({
           {/* CONTENT */}
           <div
             className={`
-              translate
+            translate
               h-full
               duration-300
               ${showModal ? "translate-y-0" : "translate-y-full"}
               ${showModal ? "opacity-100" : "opacity-0"}
-            `}
+              `}
           >
             <div
               className="
                 translate
                 relative
                 flex
-                h-full
-                w-full
-                flex-col
-                rounded-lg
-                border-0
-                bg-white
-                shadow-lg
-                outline-none
-                focus:outline-none
-                md:h-auto
+                h-auto
+                w-full 
+                flex-col 
+                overflow-y-auto 
+                rounded-lg 
+                border-0 
+                bg-white 
+                shadow-lg 
+                outline-none 
+                focus:outline-none 
+                md:h-full
                 lg:h-auto
               "
             >
               {/* HEADER */}
               <div
                 className="
-                  relative
-                  flex
+                  relative 
+                  flex 
                   items-center
                   justify-center
                   rounded-t
@@ -160,15 +162,15 @@ const Modal: React.FC<ModalProps> = ({
               {/* BODY */}
               <div className="relative flex-auto p-6">{body}</div>
               {/* FOOTER */}
-              <div className="flex flex-col gap-2 p-4">
+              <div className="flex flex-col gap-2 p-6">
                 <div
                   className="
-                  flex 
-                  w-full 
-                  flex-row 
-                  items-center 
-                  gap-4
-                "
+                    flex 
+                    w-full 
+                    flex-row 
+                    items-center 
+                    gap-4
+                  "
                 >
                   {secondaryAction && secondaryActionLabel && (
                     <Button
@@ -186,7 +188,9 @@ const Modal: React.FC<ModalProps> = ({
                     icon={IoMdClose}
                   />
                 </div>
-                {footer}
+                <div className="h-full overflow-y-auto bg-blue-500">
+                  {footer}
+                </div>
               </div>
             </div>
           </div>
