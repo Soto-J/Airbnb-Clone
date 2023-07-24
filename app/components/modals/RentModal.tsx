@@ -6,8 +6,9 @@ import Heading from "../Heading";
 import { categories } from "../navbar/Categories";
 import CategoryInput from "../CategoryInput";
 import { FieldValues, set, useForm } from "react-hook-form";
+import CountrySelect from "../inputs/CountrySelect";
 
-enum STEPS {
+enum PAGES {
   CATEGORY = 0,
   LOCATION = 1,
   INFO = 2,
@@ -17,7 +18,7 @@ enum STEPS {
 }
 
 const RentModal = () => {
-  const [step, setStep] = useState(STEPS.CATEGORY);
+  const [page, setPage] = useState(PAGES.CATEGORY);
 
   const rentModal = useRentModal();
 
@@ -53,28 +54,28 @@ const RentModal = () => {
   };
 
   const onBack = () => {
-    setStep((prev) => prev - 1);
+    setPage((prev) => prev - 1);
   };
 
   const onNext = () => {
-    setStep((prev) => prev + 1);
+    setPage((prev) => prev + 1);
   };
 
   const actionLabel = useMemo(() => {
-    if (step === STEPS.PRICE) {
+    if (page === PAGES.PRICE) {
       return "Create";
     }
 
     return "Next";
-  }, [step]);
+  }, [page]);
 
   const secondaryActionLabel = useMemo(() => {
-    if (step === STEPS.CATEGORY) {
+    if (page === PAGES.CATEGORY) {
       return undefined;
     }
 
     return "Back";
-  }, [step]);
+  }, [page]);
 
   let bodyContent = (
     <div className="flex flex-col gap-8">
@@ -108,14 +109,33 @@ const RentModal = () => {
     </div>
   );
 
+  if (page === PAGES.LOCATION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Where is your place located"
+          subtitle="Help guests find you!"
+        />
+        <CountrySelect />
+      </div>
+    );
+  }
+  if (page === PAGES.INFO) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading title="Info" subtitle="Help guests find you!" />
+      </div>
+    );
+  }
+
   return (
     <Modal
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
-      onSubmit={rentModal.onClose}
+      onSubmit={onNext}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
+      secondaryAction={page === PAGES.CATEGORY ? undefined : onBack}
       title="Airbnb your home"
       body={bodyContent}
     />
