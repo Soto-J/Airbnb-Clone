@@ -32,7 +32,6 @@ const Modal: React.FC<ModalProps> = ({
   secondaryActionLabel,
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
-  const registerModal = useRegisterModal();
 
   useEffect(() => {
     setShowModal(isOpen);
@@ -86,9 +85,9 @@ const Modal: React.FC<ModalProps> = ({
           outline-none
           focus:outline-none
           lg:overflow-y-hidden
-          "
+        "
       >
-        {/* <div onClick={handleClose} className="absolute h-screen w-full"></div> */}
+        <div onClick={handleClose} className="absolute h-screen w-full"></div>
         <div
           className="
             relative
@@ -111,7 +110,7 @@ const Modal: React.FC<ModalProps> = ({
               duration-300
               ${showModal ? "translate-y-0" : "translate-y-full"}
               ${showModal ? "opacity-100" : "opacity-0"}
-              `}
+            `}
           >
             <div
               className="
@@ -188,9 +187,7 @@ const Modal: React.FC<ModalProps> = ({
                     icon={IoMdClose}
                   />
                 </div>
-                <div className="h-full overflow-y-auto bg-blue-500">
-                  {footer}
-                </div>
+                <div className="h-full overflow-y-auto">{footer}</div>
               </div>
             </div>
           </div>
