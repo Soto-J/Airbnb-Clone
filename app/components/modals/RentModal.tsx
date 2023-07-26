@@ -44,7 +44,7 @@ const RentModal = () => {
   });
 
   const category = watch("category");
-  console.log(category);
+
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
       shouldDirty: true,
@@ -116,10 +116,11 @@ const RentModal = () => {
           title="Where is your place located"
           subtitle="Help guests find you!"
         />
-        <CountrySelect />
+        <CountrySelect onChange={() => {}} />
       </div>
     );
   }
+
   if (page === PAGES.INFO) {
     bodyContent = (
       <div className="flex flex-col gap-8">

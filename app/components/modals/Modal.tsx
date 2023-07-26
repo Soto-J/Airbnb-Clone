@@ -79,23 +79,21 @@ const Modal: React.FC<ModalProps> = ({
           flex 
           items-center 
           justify-center 
-          overflow-y-auto 
-          overflow-x-hidden 
+          overflow-hidden
           bg-neutral-800/70 
           outline-none
           focus:outline-none
-          lg:overflow-y-hidden
         "
       >
         <div onClick={handleClose} className="absolute h-screen w-full"></div>
         <div
           className="
-            relative
-            mx-auto 
+            relative 
+            mx-auto
             my-6
             h-full
             w-full
-            md:h-full
+            md:h-auto
             md:w-4/6 
             lg:h-auto 
             lg:w-3/6
@@ -105,7 +103,7 @@ const Modal: React.FC<ModalProps> = ({
           {/* CONTENT */}
           <div
             className={`
-            translate
+              translate
               h-full
               duration-300
               ${showModal ? "translate-y-0" : "translate-y-full"}
@@ -117,17 +115,16 @@ const Modal: React.FC<ModalProps> = ({
                 translate
                 relative
                 flex
-                h-auto
+                h-full
                 w-full 
                 flex-col 
-                overflow-y-auto 
                 rounded-lg 
                 border-0 
                 bg-white 
                 shadow-lg 
                 outline-none 
                 focus:outline-none 
-                md:h-full
+                md:h-auto 
                 lg:h-auto
               "
             >
@@ -177,7 +174,6 @@ const Modal: React.FC<ModalProps> = ({
                       disabled={disabled}
                       label={secondaryActionLabel}
                       onClick={handleSecondaryAction}
-                      icon={IoMdClose}
                     />
                   )}
                   <Button
@@ -187,7 +183,7 @@ const Modal: React.FC<ModalProps> = ({
                     icon={IoMdClose}
                   />
                 </div>
-                <div className="h-full overflow-y-auto">{footer}</div>
+                {footer}
               </div>
             </div>
           </div>
