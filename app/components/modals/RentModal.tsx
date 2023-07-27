@@ -1,12 +1,13 @@
 "use client";
 import React, { useMemo, useState } from "react";
-import Modal from "./Modal";
 import useRentModal from "@/app/hooks/useRentModal";
-import Heading from "../Heading";
-import { categories } from "../navbar/Categories";
-import CategoryInput from "../CategoryInput";
-import { FieldValues, set, useForm } from "react-hook-form";
 import CountrySelect from "../inputs/CountrySelect";
+import CategoryInput from "../CategoryInput";
+import Heading from "../Heading";
+import Modal from "./Modal";
+import Map from "../Map";
+import { categories } from "../navbar/Categories";
+import { FieldValues, set, useForm } from "react-hook-form";
 
 enum PAGES {
   CATEGORY = 0,
@@ -44,6 +45,7 @@ const RentModal = () => {
   });
 
   const category = watch("category");
+  const location = watch("location");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -77,6 +79,7 @@ const RentModal = () => {
     return "Back";
   }, [page]);
 
+  // Depending on the page, we want to render different content
   let bodyContent = (
     <div className="flex flex-col gap-8">
       <div>
@@ -109,6 +112,7 @@ const RentModal = () => {
     </div>
   );
 
+  // location page
   if (page === PAGES.LOCATION) {
     bodyContent = (
       <div className="flex flex-col gap-8">
@@ -116,11 +120,16 @@ const RentModal = () => {
           title="Where is your place located"
           subtitle="Help guests find you!"
         />
-        <CountrySelect onChange={() => {}} />
+        <CountrySelect
+          value={location}
+          onChange={(value) => setCustomValue("location", value)}
+        />
+        <Map />
       </div>
     );
   }
 
+  // info page
   if (page === PAGES.INFO) {
     bodyContent = (
       <div className="flex flex-col gap-8">

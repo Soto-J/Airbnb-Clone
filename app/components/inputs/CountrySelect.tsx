@@ -3,8 +3,7 @@ import useCountries from "@/app/hooks/useCountries";
 import React from "react";
 import Select from "react-select";
 // npm install react-select
-
-import Image from "next/image";
+// emoji flags dont work on windows
 
 export type CountrySelectValue = {
   flag: string;
@@ -21,9 +20,7 @@ interface CountrySelectProps {
 
 const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange }) => {
   const { getAll, getByValue } = useCountries();
-  const all = getAll();
 
-  console.log(getAll()[0]);
   return (
     <div>
       <Select
