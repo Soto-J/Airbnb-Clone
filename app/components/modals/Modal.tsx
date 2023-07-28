@@ -180,7 +180,6 @@ const Modal: React.FC<ModalProps> = ({
                     disabled={disabled}
                     label={actionLabel}
                     onClick={handleSubmit}
-                    icon={IoMdClose}
                   />
                 </div>
                 {footer}
