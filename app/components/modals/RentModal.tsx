@@ -2,12 +2,12 @@
 import React, { useMemo, useState } from "react";
 import useRentModal from "@/app/hooks/useRentModal";
 import CountrySelect from "../inputs/CountrySelect";
-import CategoryInput from "../CategoryInput";
+import CategoryInput from "../inputs/CategoryInput";
 import Heading from "../Heading";
 import Modal from "./Modal";
-import Map from "../Map";
 import { categories } from "../navbar/Categories";
 import { FieldValues, set, useForm } from "react-hook-form";
+import dynamic from "next/dynamic";
 
 enum PAGES {
   CATEGORY = 0,
@@ -44,8 +44,19 @@ const RentModal = () => {
     },
   });
 
+  // Watching to see what the user selects
   const category = watch("category");
   const location = watch("location");
+
+  // Map isn't rendered on the server, 
+  // so we need to use dynamic import
+  const Map = useMemo(
+    () =>
+      dynamic(() => import("../Map"), {
+        ssr: false,
+      }),
+    [location]
+  );
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -79,7 +90,7 @@ const RentModal = () => {
     return "Back";
   }, [page]);
 
-  // Depending on the page, we want to render different content
+  // Depending on the page, we want to render different body-content
   let bodyContent = (
     <div className="flex flex-col gap-8">
       <div>
@@ -101,7 +112,7 @@ const RentModal = () => {
         {categories.map((item) => (
           <div key={item.label} className="col-span-1">
             <CategoryInput
-              onClick={(label) => setCustomValue("category", label)}
+              onClick={(category) => setCustomValue("category", category)}
               selected={category === item.label}
               label={item.label}
               icon={item.icon}
@@ -124,7 +135,7 @@ const RentModal = () => {
           value={location}
           onChange={(value) => setCustomValue("location", value)}
         />
-        <Map />
+        <Map center={location?.latlng} />
       </div>
     );
   }

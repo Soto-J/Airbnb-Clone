@@ -1,6 +1,6 @@
 import React from "react";
 // npm install leaflet && npm install react-leaflet
-import L from "leaflet";
+import Leaflet, { LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 import "leaflet/dist/leaflet.css";
@@ -10,8 +10,8 @@ import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
 // import png then assign to icon
 // @ts-ignore (no types for this)
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
+delete Leaflet.Icon.Default.prototype._getIconUrl;
+Leaflet.Icon.Default.mergeOptions({
   iconUrl: markerIcon.src,
   iconRetinaUrl: markerIcon2x.src,
   shadowUrl: markerShadow.src,
@@ -24,7 +24,7 @@ interface MapProps {
 const Map: React.FC<MapProps> = ({ center }) => {
   return (
     <MapContainer
-      center={(center as L.LatLngExpression) || [51, -0.09]}
+      center={(center as LatLngExpression) || [51, -0.09]}
       zoom={center ? 4 : 2}
       scrollWheelZoom={false}
       className="h-[35vh] rounded-lg"
@@ -33,6 +33,7 @@ const Map: React.FC<MapProps> = ({ center }) => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      {center && <Marker position={center as LatLngExpression} />}
     </MapContainer>
   );
 };
