@@ -53,7 +53,7 @@ const RentModal = () => {
   const bathroomCount = watch("bathroomCount");
 
   // Map isn't rendered on the server,
-  // so we need to use dynamic import
+  // need to use dynamic import
   const Map = useMemo(
     () =>
       dynamic(() => import("../Map"), {
@@ -62,6 +62,7 @@ const RentModal = () => {
     [location]
   );
 
+  // setValue doesnt re-render the component
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
       shouldDirty: true,
