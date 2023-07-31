@@ -9,6 +9,7 @@ import { categories } from "../navbar/Categories";
 import { FieldValues, set, useForm } from "react-hook-form";
 import dynamic from "next/dynamic";
 import Counter from "../inputs/Counter";
+import ImageUpload from "../inputs/ImageUpload";
 
 enum PAGES {
   CATEGORY = 0,
@@ -51,6 +52,7 @@ const RentModal = () => {
   const guestCount = watch("guestCount");
   const roomCount = watch("roomCount");
   const bathroomCount = watch("bathroomCount");
+  const imageSrc = watch("imageSrc");
 
   // Map isn't rendered on the server,
   // need to use dynamic import
@@ -128,7 +130,7 @@ const RentModal = () => {
     </div>
   );
 
-  // location page
+  // LOCATION PAGE
   if (page === PAGES.LOCATION) {
     bodyContent = (
       <div className="flex flex-col gap-8">
@@ -147,10 +149,7 @@ const RentModal = () => {
     );
   }
 
-  const fn = (someshit: string) => {
-    console.log(someshit);
-  };
-  // info page
+  // INFO PAGE
   if (page === PAGES.INFO) {
     bodyContent = (
       <div className="flex flex-col gap-8">
@@ -178,6 +177,23 @@ const RentModal = () => {
           subtitle="How many guests do you allow?"
           value={bathroomCount}
           onChange={(value) => setCustomValue("bathroomCount", value)}
+        />
+      </div>
+    );
+  }
+
+  // IMAGES PAGE
+  if (page === PAGES.IMAGES) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Showcase your place"
+          subtitle="Show guests what your place looks like"
+        />
+
+        <ImageUpload
+          onChange={(value) => setCustomValue("imageSrc", value)}
+          value={imageSrc}
         />
       </div>
     );
