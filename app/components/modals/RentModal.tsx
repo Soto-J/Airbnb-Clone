@@ -199,6 +199,30 @@ const RentModal = () => {
     );
   }
 
+  // DESCRIPTION PAGE
+  if (page === PAGES.DESCRIPTION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Describe your place"
+          subtitle="Help guests know what to expect"
+        />
+      </div>
+    );
+  }
+
+  // PRICE PAGE
+  if (page === PAGES.PRICE) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="How much do you want to charge?"
+          subtitle="Set a price"
+        />
+      </div>
+    );
+  }
+
   return (
     <Modal
       isOpen={rentModal.isOpen}
