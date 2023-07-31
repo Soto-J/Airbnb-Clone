@@ -10,6 +10,7 @@ import { FieldValues, set, useForm } from "react-hook-form";
 import dynamic from "next/dynamic";
 import Counter from "../inputs/Counter";
 import ImageUpload from "../inputs/ImageUpload";
+import Input from "../inputs/Input";
 
 enum PAGES {
   CATEGORY = 0,
@@ -22,6 +23,7 @@ enum PAGES {
 
 const RentModal = () => {
   const [page, setPage] = useState(PAGES.CATEGORY);
+  const [isLoading, setIsLoading] = useState(false);
 
   const rentModal = useRentModal();
 
@@ -207,6 +209,24 @@ const RentModal = () => {
           title="Describe your place"
           subtitle="Help guests know what to expect"
         />
+
+        <Input
+          id="title"
+          label="Title"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+        <hr />
+        <Input
+          id="description"
+          label="Description"
+          register={register}
+          disabled={isLoading}
+          errors={errors}
+          required
+        />
       </div>
     );
   }
@@ -216,8 +236,19 @@ const RentModal = () => {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="How much do you want to charge?"
-          subtitle="Set a price"
+          title="Now, set your price"
+          subtitle="How much do you want to charge?"
+        />
+
+        <Input
+          id="price"
+          label="Price"
+          type="number"
+          register={register}
+          disabled={isLoading}
+          errors={errors}
+          formatPrice
+          required
         />
       </div>
     );

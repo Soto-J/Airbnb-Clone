@@ -31,7 +31,7 @@ const Input: React.FC<InputProps> = ({
           className="
             absolute
             left-2
-            top-5
+            top-6
             text-neutral-500
           "
         />
@@ -39,8 +39,8 @@ const Input: React.FC<InputProps> = ({
       <input
         id={id}
         disabled={disabled}
-        {...register(id, { required })}
         placeholder=" "
+        {...register(id, { required })}
         type={type}
         className={`
           peer
@@ -61,19 +61,21 @@ const Input: React.FC<InputProps> = ({
       />
       <label
         className={`
-          text-md
-          transform-translate-y-3
           pointer-events-none
           absolute
-          top-5
+          top-7
           z-10
           origin-[0]
+          -translate-y-4
+          scale-75
+          transform
+          text-sm
           duration-300
-          ${formatPrice ? "left-9" : "left-4"}
           peer-placeholder-shown:translate-y-0
           peer-placeholder-shown:scale-100
           peer-focus:-translate-y-4
           peer-focus:scale-75
+          ${formatPrice ? "left-9" : "left-4"}
           ${errors[id] ? "text-rose-500" : " text-zinc-400"}
         `}
       >
