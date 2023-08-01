@@ -6,11 +6,14 @@ import CategoryInput from "../inputs/CategoryInput";
 import Heading from "../Heading";
 import Modal from "./Modal";
 import { categories } from "../navbar/Categories";
-import { FieldValues, set, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, set, useForm } from "react-hook-form";
 import dynamic from "next/dynamic";
 import Counter from "../inputs/Counter";
 import ImageUpload from "../inputs/ImageUpload";
 import Input from "../inputs/Input";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 enum PAGES {
   CATEGORY = 0,
@@ -26,6 +29,7 @@ const RentModal = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const rentModal = useRentModal();
+  const router = useRouter();
 
   const {
     register,
@@ -36,15 +40,15 @@ const RentModal = () => {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      category: "",
-      location: null,
-      guestCount: 1,
-      roomCount: 1,
-      bathroomCount: 1,
-      imageSrc: "",
-      price: 1,
       title: "",
       description: "",
+      imageSrc: "",
+      category: "",
+      roomCount: 1,
+      bathroomCount: 1,
+      guestCount: 1,
+      location: null,
+      price: 1,
     },
   });
 
@@ -81,6 +85,26 @@ const RentModal = () => {
 
   const onNext = () => {
     setPage((prev) => prev + 1);
+  };
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    if (page !== PAGES.PRICE) {
+      return onNext();
+    }
+
+    setIsLoading(true);
+    axios
+      .post("/api/listings", data)
+      .then(() => {
+        toast.success("Listing created!");
+        router.refresh();
+        // reset form and set page back to category
+        reset();
+        setPage(PAGES.CATEGORY);
+        rentModal.onClose();
+      })
+      .catch(() => toast.error("Somthing went wrong!"))
+      .finally(() => setIsLoading(false));
   };
 
   const actionLabel = useMemo(() => {
@@ -169,14 +193,14 @@ const RentModal = () => {
         <hr />
         <Counter
           title="Rooms"
-          subtitle="How many guests do you allow?"
+          subtitle="How many rooms do you have?"
           value={roomCount}
           onChange={(value) => setCustomValue("roomCount", value)}
         />
         <hr />
         <Counter
-          title="Guests"
-          subtitle="How many guests do you allow?"
+          title="Bathrooms"
+          subtitle="How many bathrooms do you have?"
           value={bathroomCount}
           onChange={(value) => setCustomValue("bathroomCount", value)}
         />
@@ -258,7 +282,7 @@ const RentModal = () => {
     <Modal
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
-      onSubmit={onNext}
+      onSubmit={handleSubmit(onSubmit)}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={page === PAGES.CATEGORY ? undefined : onBack}
