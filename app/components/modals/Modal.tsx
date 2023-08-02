@@ -79,7 +79,8 @@ const Modal: React.FC<ModalProps> = ({
           flex 
           items-center 
           justify-center 
-          overflow-hidden
+          overflow-x-hidden 
+          overflow-y-hidden 
           bg-neutral-800/70 
           outline-none
           focus:outline-none
@@ -137,7 +138,8 @@ const Modal: React.FC<ModalProps> = ({
                   justify-center
                   rounded-t
                   border-b-[1px]
-                  p-6
+                  p-4
+                  lg:p-6
                 "
               >
                 <button
@@ -158,7 +160,7 @@ const Modal: React.FC<ModalProps> = ({
               {/* BODY */}
               <div className="relative flex-auto p-6">{body}</div>
               {/* FOOTER */}
-              <div className="flex flex-col gap-2 p-6">
+              <div className="flex flex-col gap-2 px-6 lg:p-6">
                 <div
                   className="
                     flex 
@@ -176,6 +178,7 @@ const Modal: React.FC<ModalProps> = ({
                       onClick={handleSecondaryAction}
                     />
                   )}
+                  
                   <Button
                     disabled={disabled}
                     label={actionLabel}
