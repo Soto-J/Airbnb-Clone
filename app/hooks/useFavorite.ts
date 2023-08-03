@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useCallback, MouseEvent } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import { create } from "zustand";
 import axios from "axios";
 
 import { SafeUser } from "../types";
@@ -52,9 +51,10 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
     [currentUser, isFavorited, listingId, loginModal, router]
   );
 
-  // useEffect(() => {}, [currentUser]);
-
   return {
-    
-  }
+    isFavorited,
+    toggleFavorite,
+  };
 };
+
+export default useFavorite;
