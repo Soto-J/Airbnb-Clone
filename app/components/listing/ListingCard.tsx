@@ -67,7 +67,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
     const end = new Date(reservation.endDate);
     console.log(start, end);
     return `${format(start, "PP")} - ${format(end, "PP")}`;
-  }, []);
+  }, [reservation]);
 
   return (
     <div
@@ -86,6 +86,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         >
           <Image
             fill
+            sizes="100%"
             src={data.imageSrc}
             alt={data.title}
             className="
