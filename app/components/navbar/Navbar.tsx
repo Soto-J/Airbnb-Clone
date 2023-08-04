@@ -19,7 +19,6 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
           <div
             className="
               flex
-              flex-row
               items-center
               justify-between
               gap-3
