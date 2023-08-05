@@ -17,7 +17,6 @@ export default async function getListingById(params: IParams) {
       return null;
     }
 
-    console.log(listing);
     // Date objects are not supported
     return {
       ...listing,
@@ -26,7 +25,7 @@ export default async function getListingById(params: IParams) {
         ...listing.user,
         createdAt: listing.user.createdAt.toISOString(),
         updatedAt: listing.user.updatedAt.toISOString(),
-        emailVerifiedAt: listing.user.emailVerified?.toISOString(),
+        emailVerified: listing.user.emailVerified?.toISOString() || null,
       },
     };
   } catch (error: any) {
