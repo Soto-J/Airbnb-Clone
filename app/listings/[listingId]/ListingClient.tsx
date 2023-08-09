@@ -38,7 +38,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
-  const [dateRange, setDateRange] = useState(initialDateRange);
+  const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
   const loginModal = useLoginModal();
   const router = useRouter();
@@ -70,6 +70,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
     }
 
     setIsLoading(true);
+    
     axios
       .post("/api/reservations", {
         listingId: listing.id,

@@ -3,7 +3,6 @@
 import { Range } from "react-date-range";
 import Calendar from "../inputs/Calendar";
 import Button from "../Button";
-import { MouseEvent } from "react";
 
 interface ListingReservationProps {
   price: number;
@@ -49,6 +48,11 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       />
 
       <hr />
+      <div className="p-4">
+        <Button label="Reserve" disabled={disabled} onClick={onSubmit} />
+      </div>
+
+      <hr />
       <div
         className="
           flex
@@ -62,8 +66,6 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
         <div>total</div>
         <div>$ {totalPrice}</div>
       </div>
-
-      <Button label="Reserve" onClick={() => {}} />
     </div>
   );
 };
