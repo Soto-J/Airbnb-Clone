@@ -1,9 +1,8 @@
-import ClientOnly from "@/app/components/ClientOnly";
-
 import getListingById from "@/app/actions/getListingById";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getReservationsByValue from "@/app/actions/getReservationsByValue";
 
+import ClientOnly from "@/app/components/ClientOnly";
 import EmptyState from "@/app/components/EmptyState";
 import ListingClient from "./ListingClient";
 

@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import { Range } from "react-date-range";
 import axios from "axios";
 
-import { SafeUser, SafeListing, SafeReservations } from "@/app/types";
+import { SafeUser, SafeListing, SafeReservation } from "@/app/types";
 import { eachDayOfInterval, differenceInCalendarDays } from "date-fns";
 import { categories } from "@/app/components/navbar/Categories";
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -22,7 +22,7 @@ const initialDateRange: Range = {
 };
 
 interface ListingClientProps {
-  reservations?: SafeReservations[];
+  reservations?: SafeReservation[];
   listing: SafeListing & {
     user: SafeUser;
   };
