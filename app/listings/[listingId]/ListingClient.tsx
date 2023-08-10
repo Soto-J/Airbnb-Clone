@@ -1,9 +1,11 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
+import { Range } from "react-date-range";
+import axios from "axios";
 
-import { SafeUser, SafeListing } from "@/app/types";
-import { Reservation } from "@prisma/client";
+import { SafeUser, SafeListing, SafeReservations } from "@/app/types";
 import { eachDayOfInterval, differenceInCalendarDays } from "date-fns";
 import { categories } from "@/app/components/navbar/Categories";
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -11,11 +13,7 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import Container from "@/app/components/Container";
 import ListingHead from "@/app/components/listing/ListingHead";
 import ListingInfo from "@/app/components/listing/ListingInfo";
-import axios from "axios";
-import { toast } from "react-hot-toast";
 import ListingReservation from "@/app/components/listing/ListingReservation";
-
-import { Range } from "react-date-range";
 
 const initialDateRange: Range = {
   startDate: new Date(),
@@ -24,7 +22,7 @@ const initialDateRange: Range = {
 };
 
 interface ListingClientProps {
-  reservations?: Reservation[];
+  reservations?: SafeReservations[];
   listing: SafeListing & {
     user: SafeUser;
   };
@@ -70,7 +68,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
     }
 
     setIsLoading(true);
-    
+
     axios
       .post("/api/reservations", {
         listingId: listing.id,
@@ -143,7 +141,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 md:col-span-3
               "
             >
-              <ListingReservation 
+              <ListingReservation
                 price={listing.price}
                 totalPrice={totalPrice}
                 onChangeDate={(value) => setDateRange(value)}
