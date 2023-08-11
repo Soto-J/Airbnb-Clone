@@ -1,12 +1,11 @@
 "use client";
-import React from "react";
 
 interface MenuItemProps {
   onClick: () => void;
   label: string;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({ onClick, label }) => {
+const MenuItem = ({ onClick, label }: MenuItemProps) => {
   return (
     <div
       onClick={onClick}

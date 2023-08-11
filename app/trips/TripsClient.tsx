@@ -1,4 +1,5 @@
 import { SafeReservation, SafeUser } from "../types";
+
 import Container from "../components/Container";
 import Heading from "../components/Heading";
 
@@ -7,10 +8,7 @@ interface TripsClientProps {
   currentUser: SafeUser;
 }
 
-const TripsClient: React.FC<TripsClientProps> = ({
-  reservations,
-  currentUser,
-}) => {
+const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
   return (
     <Container>
       <Heading

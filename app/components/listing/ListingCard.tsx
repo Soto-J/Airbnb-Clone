@@ -23,7 +23,7 @@ interface ListingCardProps {
   currentUser?: SafeUser | null;
 }
 
-const ListingCard: React.FC<ListingCardProps> = ({
+const ListingCard = ({
   key,
   data,
   reservation,
@@ -32,7 +32,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
   actionLabel,
   actionId,
   currentUser,
-}) => {
+}: ListingCardProps) => {
   const router = useRouter();
   const { getByValue } = useCountries();
 

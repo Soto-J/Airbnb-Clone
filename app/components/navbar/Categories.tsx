@@ -1,9 +1,7 @@
 "use client";
-import Container from "../Container";
-import CategoryBox from "../CategoryBox";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import { IoDiamond } from "react-icons/io5";
-import { usePathname, useSearchParams } from "next/navigation";
 import { TbBeach, TbMountain, TbPool } from "react-icons/tb";
 import { MdOutlineVilla } from "react-icons/md";
 import { FaSkiing } from "react-icons/fa";
@@ -18,6 +16,9 @@ import {
   GiIsland,
   GiWindmill,
 } from "react-icons/gi";
+
+import Container from "../Container";
+import CategoryBox from "../CategoryBox";
 
 export const categories = [
   {

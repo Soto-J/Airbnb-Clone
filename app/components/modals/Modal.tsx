@@ -2,7 +2,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Button from "../Button";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
 
 interface ModalProps {
   isOpen: boolean;
@@ -19,7 +18,7 @@ interface ModalProps {
   secondaryActionLabel?: string;
 }
 
-const Modal: React.FC<ModalProps> = ({
+const Modal = ({
   isOpen,
   onClose,
   onSubmit,
@@ -30,7 +29,7 @@ const Modal: React.FC<ModalProps> = ({
   disabled,
   secondaryAction,
   secondaryActionLabel,
-}) => {
+}: ModalProps) => {
   const [showModal, setShowModal] = useState(isOpen);
 
   useEffect(() => {
@@ -178,7 +177,7 @@ const Modal: React.FC<ModalProps> = ({
                       onClick={handleSecondaryAction}
                     />
                   )}
-                  
+
                   <Button
                     disabled={disabled}
                     label={actionLabel}

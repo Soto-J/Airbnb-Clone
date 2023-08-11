@@ -17,7 +17,7 @@ interface ListingReservationProps {
   disabledDates: Date[];
 }
 
-const ListingReservation: React.FC<ListingReservationProps> = ({
+const ListingReservation = ({
   price,
   totalPrice,
   onChangeDate,
@@ -25,7 +25,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   onSubmit,
   disabled,
   disabledDates,
-}) => {
+}: ListingReservationProps) => {
   return (
     <div
       className="

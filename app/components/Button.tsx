@@ -1,5 +1,4 @@
 "use client";
-
 import { IconType } from "react-icons";
 
 interface ButtonProps {
@@ -12,14 +11,14 @@ interface ButtonProps {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
   label,
   disabled,
   outline,
   small,
   icon: Icon,
   onClick,
-}) => {
+}: ButtonProps) => {
   return (
     <button
       onClick={onClick}

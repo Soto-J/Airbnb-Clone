@@ -35,11 +35,10 @@ export async function POST(request: Request) {
       bathroomCount,
       guestCount,
       locationValue: location.value,
-      price: Number(price),
+      price: parseInt(price, 10),
       userId: currentUser.id,
     },
   });
-  // parse(price, 10)
 
   return NextResponse.json(listing);
 }

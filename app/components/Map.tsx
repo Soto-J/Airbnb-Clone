@@ -1,4 +1,3 @@
-import React from "react";
 // npm install leaflet && npm install react-leaflet
 import Leaflet, { LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -21,7 +20,7 @@ interface MapProps {
   center?: number[];
 }
 
-const Map: React.FC<MapProps> = ({ center }) => {
+const Map = ({ center }: MapProps) => {
   return (
     <MapContainer
       center={(center as LatLngExpression) || [51, -0.09]}

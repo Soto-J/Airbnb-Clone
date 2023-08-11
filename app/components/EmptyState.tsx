@@ -10,11 +10,11 @@ interface EmptyStateProps {
   showReset?: boolean;
 }
 
-const EmptyState: React.FC<EmptyStateProps> = ({
+const EmptyState = ({
   title = "No results found",
   subtitle = "Try adjusting your search or filter to find what you're looking for.",
   showReset,
-}) => {
+}: EmptyStateProps) => {
   const router = useRouter();
   return (
     <div

@@ -1,19 +1,21 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import axios from "axios";
+
+import { toast } from "react-hot-toast";
+import { categories } from "../navbar/Categories";
 import useRentModal from "@/app/hooks/useRentModal";
+
 import CountrySelect from "../inputs/CountrySelect";
 import CategoryInput from "../inputs/CategoryInput";
 import Heading from "../Heading";
 import Modal from "./Modal";
-import { categories } from "../navbar/Categories";
-import { FieldValues, SubmitHandler, set, useForm } from "react-hook-form";
-import dynamic from "next/dynamic";
 import Counter from "../inputs/Counter";
 import ImageUpload from "../inputs/ImageUpload";
 import Input from "../inputs/Input";
-import axios from "axios";
-import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
 
 enum PAGES {
   CATEGORY = 0,
@@ -52,7 +54,6 @@ const RentModal = () => {
     },
   });
 
-  // Watching to see what the user selects
   const category = watch("category");
   const location = watch("location");
   const guestCount = watch("guestCount");
@@ -70,7 +71,7 @@ const RentModal = () => {
     [location]
   );
 
-  // setValue doesnt re-render the component
+  // setValue doesnt re-render the component, needed wrapper
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
       shouldDirty: true,
@@ -271,7 +272,7 @@ const RentModal = () => {
           register={register}
           disabled={isLoading}
           errors={errors}
-          formatPrice
+          formatPrice={true}
           required
         />
       </div>

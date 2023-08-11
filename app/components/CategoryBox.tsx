@@ -1,6 +1,7 @@
 "use client";
+import { useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useCallback } from "react";
+
 import { IconType } from "react-icons";
 // npm install query-string
 import queryString from "query-string";
@@ -11,11 +12,7 @@ interface CategoryBoxProps {
   selected?: boolean;
 }
 
-const CategoryBox: React.FC<CategoryBoxProps> = ({
-  label,
-  icon: Icon,
-  selected,
-}) => {
+const CategoryBox = ({ label, icon: Icon, selected }: CategoryBoxProps) => {
   const router = useRouter();
   const params = useSearchParams();
 
@@ -32,7 +29,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
 
     // If params exist, parse them into an object
     const currentQuery = queryString.parse(params.toString());
-    
+
     const updatedQuery: any = {
       ...currentQuery,
       category: label,

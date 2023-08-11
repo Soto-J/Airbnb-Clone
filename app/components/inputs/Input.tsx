@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { BiDollar } from "react-icons/bi";
 
@@ -23,6 +24,9 @@ const Input: React.FC<InputProps> = ({
   register,
   errors,
 }) => {
+  useEffect(() => {
+    console.log(formatPrice);
+  }, [formatPrice]);
   return (
     <div className="relative w-full">
       {formatPrice && (
@@ -54,11 +58,11 @@ const Input: React.FC<InputProps> = ({
           transition
           disabled:cursor-not-allowed
           disabled:opacity-70
-          lg:p-4
-          lg:pt-6
           ${formatPrice ? "pl-9" : "pl-4"}
           ${errors[id] ? "border-rose-500" : " border-neutral-300"}
           ${errors[id] ? "focus:border-rose-500" : " focus:border-black"}
+          p-4
+          pt-6
         `}
       />
       <label
