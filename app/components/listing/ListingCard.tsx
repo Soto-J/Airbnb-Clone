@@ -2,16 +2,15 @@
 import { useCallback, MouseEvent, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { format } from "date-fns";
 
 import { SafeUser, SafeListing, SafeReservation } from "@/app/types";
-import { format } from "date-fns";
 import useCountries from "@/app/hooks/useCountries";
 
 import HeartButton from "../HeartButton";
 import Button from "../Button";
 
 interface ListingCardProps {
-  key: string;
   data: SafeListing;
   reservation?: SafeReservation;
   onAction?: (id: string) => void;
@@ -22,13 +21,12 @@ interface ListingCardProps {
 }
 
 const ListingCard = ({
-  key,
   data,
   reservation,
   onAction,
   disabled,
   actionLabel,
-  actionId,
+  actionId = "",
   currentUser,
 }: ListingCardProps) => {
   const router = useRouter();
