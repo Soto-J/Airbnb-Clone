@@ -4,8 +4,7 @@ import { useRouter } from "next/navigation";
 import { Reservation } from "@prisma/client";
 import Image from "next/image";
 
-import { SafeUser, SafeListing } from "@/app/types";
-import { TfiMoney } from "react-icons/tfi";
+import { SafeUser, SafeListing, SafeReservation } from "@/app/types";
 import { format } from "date-fns";
 import useCountries from "@/app/hooks/useCountries";
 
@@ -15,7 +14,7 @@ import Button from "../Button";
 interface ListingCardProps {
   key: string;
   data: SafeListing;
-  reservation?: Reservation;
+  reservation?: SafeReservation;
   onAction?: (id: string) => void;
   disabled?: boolean;
   actionLabel?: string;
@@ -115,8 +114,7 @@ const ListingCard = ({
           </div>
 
           <div className="flex items-center">
-            <TfiMoney size={16} className="" />
-            <div className="font-semibold">{price}</div>
+            <div className="font-semibold">$ {price}</div>
             {!reservation && <div className="font-llight ml-1">night</div>}
           </div>
         </div>
