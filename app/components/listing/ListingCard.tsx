@@ -1,7 +1,6 @@
 "use client";
 import { useCallback, MouseEvent, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { Reservation } from "@prisma/client";
 import Image from "next/image";
 
 import { SafeUser, SafeListing, SafeReservation } from "@/app/types";
@@ -66,7 +65,7 @@ const ListingCard = ({
 
     const start = new Date(reservation.startDate);
     const end = new Date(reservation.endDate);
-    console.log(start, end);
+
     return `${format(start, "PP")} - ${format(end, "PP")}`;
   }, [reservation]);
 
