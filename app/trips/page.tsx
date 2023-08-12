@@ -5,11 +5,7 @@ import ClientOnly from "../components/ClientOnly";
 import EmptyState from "../components/EmptyState";
 import TripsClient from "./TripsClient";
 
-interface IParams {
-  reservationId?: string;
-}
-
-const page = async ({ params }: { params: IParams }) => {
+const page = async () => {
   const currentUser = await getCurrentUser();
 
   // user is not logged in
