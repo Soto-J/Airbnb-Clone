@@ -21,6 +21,7 @@ const ReservationsPage = async () => {
     authorId: currentUser.id,
   });
 
+  console.log("Reservations:", reservations);
   if (reservations.length === 0) {
     return (
       <ClientOnly>
