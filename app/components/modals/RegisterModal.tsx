@@ -45,6 +45,7 @@ const RegisterModal = () => {
         reset();
 
         registerModal.onClose();
+        loginModal.onOpen();
       })
       .catch((error) => {
         console.log("ERROR:", error);
@@ -94,7 +95,7 @@ const RegisterModal = () => {
   );
 
   const footerContent = (
-    <div className="lg:mt-3 flex flex-col gap-4">
+    <div className="flex flex-col gap-4 lg:mt-3">
       <hr />
       <Button
         outline
