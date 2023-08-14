@@ -44,16 +44,16 @@ const ReservationsClient = ({
 
       <div
         className="
-        md:gridcols-3
-        mt-10
-        grid
-        grid-cols-1
-        gap-8
-        sm:grid-cols-2
-        lg:grid-cols-4
-        xl:grid-cols-5
-        2xl:grid-cols-6
-      "
+          md:gridcols-3
+          mt-10
+          grid
+          grid-cols-1
+          gap-8
+          sm:grid-cols-2
+          lg:grid-cols-4
+          xl:grid-cols-5
+          2xl:grid-cols-6
+        "
       >
         {reservations.map((reservation) => (
           <ListingCard
