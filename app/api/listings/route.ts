@@ -11,7 +11,6 @@ export async function POST(request: Request) {
     return NextResponse.error();
   }
 
-  const body = await request.json();
   const {
     title,
     description,
@@ -22,11 +21,10 @@ export async function POST(request: Request) {
     guestCount,
     location,
     price,
-  } = body;
+  } = await request.json();
 
   const listing = await prisma.listing.create({
     data: {
-      id: currentUser.id,
       title,
       description,
       imageSrc,

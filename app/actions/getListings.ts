@@ -1,8 +1,21 @@
 import primsa from "@/app/libs/prismadb";
 
-export async function getListings() {
+export interface IListingParams {
+  userId?: string;
+}
+
+export async function getListings(params: IListingParams) {
   try {
+    const { userId } = params;
+
+    let query: any = {};
+
+    if (userId) {
+      query.userId = userId;
+    }
+
     const listings = await primsa.listing.findMany({
+      where: query,
       orderBy: { createdAt: "desc" },
     });
 

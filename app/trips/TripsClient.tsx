@@ -12,7 +12,7 @@ import ListingCard from "../components/listing/ListingCard";
 
 interface TripsClientProps {
   reservations: SafeReservation[];
-  currentUser: SafeUser;
+  currentUser: SafeUser | null;
 }
 
 const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {

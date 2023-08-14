@@ -26,7 +26,11 @@ const FavoritesClient = ({ currentUser, favorites }: FavoritesClientProps) => {
         "
       >
         {favorites.map((favorite) => (
-          <ListingCard data={favorite} actionId={favorite.id} />
+          <ListingCard
+            data={favorite}
+            actionId={favorite.id}
+            currentUser={currentUser}
+          />
         ))}
       </div>
     </Container>
