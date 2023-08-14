@@ -27,6 +27,7 @@ const FavoritesClient = ({ currentUser, favorites }: FavoritesClientProps) => {
       >
         {favorites.map((favorite) => (
           <ListingCard
+            key={favorite.id}
             data={favorite}
             actionId={favorite.id}
             currentUser={currentUser}
