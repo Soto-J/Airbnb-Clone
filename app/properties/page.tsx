@@ -4,7 +4,7 @@ import EmptyState from "../components/EmptyState";
 import { IListingParams, getListings } from "../actions/getListings";
 import PropertiesClient from "./PropertiesClient";
 
-const page = async (params: IListingParams) => {
+const page = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
@@ -15,7 +15,7 @@ const page = async (params: IListingParams) => {
     );
   }
 
-  const listings = await getListings(params);
+  const listings = await getListings({ userId: currentUser.id });
 
   if (listings.length === 0) {
     <ClientOnly>
