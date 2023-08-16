@@ -1,9 +1,13 @@
 "use client";
+import useSearchModal from "@/app/hooks/useSearchModal";
 import { BiSearch } from "react-icons/bi";
 
 const Search = () => {
+  const searchModal = useSearchModal();
+
   return (
     <div
+      onClick={searchModal.onOpen}
       className="
         w-full
         cursor-pointer
@@ -14,7 +18,7 @@ const Search = () => {
         transition
         hover:shadow-md
         md:w-auto
-        "
+      "
     >
       <div
         className="
