@@ -104,7 +104,7 @@ const Modal = ({
           <div
             className={`
               translate
-              h-full
+              min-h-full
               duration-300
               ${showModal ? "translate-y-0" : "translate-y-full"}
               ${showModal ? "opacity-100" : "opacity-0"}
@@ -167,6 +167,7 @@ const Modal = ({
                     flex-row 
                     items-center 
                     gap-4
+                    pb-4
                   "
                 >
                   {secondaryAction && secondaryActionLabel && (

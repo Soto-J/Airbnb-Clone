@@ -62,13 +62,7 @@ const SearchModal = () => {
       return;
     }
 
-    console.log(qs.parse(params.toString()));
-
-    let currentQeury = {};
-
-    if (params) {
-      currentQeury = qs.parse(params.toString());
-    }
+    const currentQeury = qs.parse(params.toString());
 
     const updatedQuery: any = {
       ...currentQeury,
@@ -154,7 +148,6 @@ const SearchModal = () => {
 
         <Calendar
           value={dateRange}
-          disabledDates={[]}
           onChange={(value) => setDateRange(value.selection)}
         />
       </div>
