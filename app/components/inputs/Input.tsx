@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { BiDollar } from "react-icons/bi";
 
@@ -24,9 +23,6 @@ const Input: React.FC<InputProps> = ({
   register,
   errors,
 }) => {
-  useEffect(() => {
-    console.log(formatPrice);
-  }, [formatPrice]);
   return (
     <div className="relative w-full">
       {formatPrice && (

@@ -48,8 +48,6 @@ const RegisterModal = () => {
         loginModal.onOpen();
       })
       .catch((error) => {
-        console.log("ERROR:", error);
-
         toast.error("somthing went wrong");
       })
       .finally(() => {
