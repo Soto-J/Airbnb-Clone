@@ -1,7 +1,6 @@
 import { getServerSession } from "next-auth/next";
 
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-
 import primsa from "@/app/libs/prismadb";
 
 export async function getSession() {
