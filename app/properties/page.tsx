@@ -1,7 +1,7 @@
 import ClientOnly from "../components/ClientOnly";
 import getCurrentUser from "../actions/getCurrentUser";
 import EmptyState from "../components/EmptyState";
-import { IListingParams, getListings } from "../actions/getListings";
+import getListings, { IListingParams } from "../actions/getListings";
 import PropertiesClient from "./PropertiesClient";
 
 const page = async () => {
