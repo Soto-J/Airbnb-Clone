@@ -1,5 +1,5 @@
 import getCurrentUser from "./actions/getCurrentUser";
-import { IListingParams, getListings } from "./actions/getListings";
+import getListings, { IListingParams } from "./actions/getListings";
 
 import ClientOnly from "./components/ClientOnly";
 import Container from "./components/Container";

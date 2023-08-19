@@ -11,7 +11,7 @@ export interface IListingParams {
   category?: string;
 }
 
-export async function getListings(params: IListingParams) {
+export default async function getListings(params: IListingParams) {
   try {
     const {
       userId,
